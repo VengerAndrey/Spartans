@@ -1,8 +1,16 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <Windows.h>
+
+using namespace std;
+
 class Unit
 {
 	int hp;
 	int dmg;
+	int hpChange;
 public:
 	Unit(int hp = 0, int dmg = 0);
 	int GetHp();
@@ -10,19 +18,10 @@ public:
 	int GetDmg();
 	void SetDmg(int dmg);
 	bool IsAlive();
-	virtual void Attack(Group group) {};
-	virtual void Print() {};
+	int GetHpChange();
+	void ClearHpChange();
+	virtual void Attack(Unit** units, int size) = 0;
+	virtual void Print() = 0;
+	virtual void LogMyself(string& log) = 0;
 };
 
-class Group
-{
-protected:
-	Unit* units;
-	int size;
-
-public:
-	void Update();
-	Group GetGroup();
-	int GetSize();
-	Unit* GetUnits();
-};

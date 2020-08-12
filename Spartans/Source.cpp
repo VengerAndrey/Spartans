@@ -1,21 +1,42 @@
 #include <iostream>
 
-#include "HopliteArmy.h"
-#include "Dragon.h"
-#include "EnemyArmy.h"
-
+#include "Battle.h"
+#include "Initialize.h"
 using namespace std;
 
 int main()
 {
-	HopliteArmy army(Hoplite(100, 100), 10);
-	army.Print();
-	EnemyArmy enemies(3);
-	//Dragon dragon(1000, 50);
-	//dragon.Attack(army.GetGroup());
-	enemies.Attack(army.GetGroup());
-	army.Update();
-	army.Print();
-	//army.Attack(dragon.GetUnit());
-	//dragon.Print();
+	Init();
+
+	cout << "Enter hoplite stats:\n";
+	cout << "HP: ";
+	string hp;
+	cin >> hp;
+	cout << "DMG: ";
+	string dmg;
+	cin >> dmg;
+	cout << "Enter number of hoplites: ";
+	int numberOfHoplites;
+	cin >> numberOfHoplites;
+
+	Hoplite hoplite(stoi(hp), stoi(dmg));
+
+	cout << "\nEnter dragon stats:\n";
+	cout << "HP: ";
+	cin >> hp;
+	cout << "DMG: ";
+	cin >> dmg;
+
+	Dragon dragon(stoi(hp), stoi(dmg));
+
+	cout << "\nEnter immortal stats:\n";
+	cout << "HP: ";
+	cin >> hp;
+
+	Immortal immortal(stoi(hp), 1);
+
+	UnitsPattern up = { hoplite, numberOfHoplites, dragon, immortal };
+
+	Battle battle(up);
+	battle.Start();
 }

@@ -1,12 +1,13 @@
 #pragma once
-#include "Hoplite.h"
 #include <iostream>
+
+#include "Army.h"
+#include "Hoplite.h"
+
 using namespace std;
 
-class HopliteArmy : public Group
+class HopliteArmy : public Army
 {
-	//vector<Hoplite> army;
-	//Group army;
 public:
 	HopliteArmy(Hoplite hoplite, int size = 1);
 	void Attack(Group group);

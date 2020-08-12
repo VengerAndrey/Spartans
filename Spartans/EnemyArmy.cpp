@@ -1,30 +1,42 @@
 #include "EnemyArmy.h"
 
-EnemyArmy::EnemyArmy(int size)
+EnemyArmy::EnemyArmy(Dragon dragon, Immortal immortal, int size) : Army(size)
 {
-	this->size = size;
-	this->units = new Unit[size];
+	int randomNumber;
 	for (int i = 0; i < size; i++)
 	{
-		this->units[i] = Dragon(1000, 50);
+		randomNumber = rand() % 2;
+		switch (randomNumber)
+		{
+		case 0:
+			units[i] = new Dragon(dragon);
+			break;
+		case 1:
+			units[i] = new Immortal(immortal);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
 void EnemyArmy::Attack(Group group)
 {
-	for (int i = 0; i < size; i++)
-	{
-		units[i].Attack(group);
-	}
+	cout << "\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";\
+	SetColor(Colors::RED);
+	cout << "\nEnemy army is attacking...\n";
+	SetColor(Colors::WHITE);
+	cout << "\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";
+
+	Army::Attack(group);
 }
 
 void EnemyArmy::Print()
 {
-	cout << "----------------------------------\n";
-	cout << "Enemy Army:\n";
-	for (int i = 0; i < size; i++)
-	{
-		units[i].Print();
-	}
-	cout << "----------------------------------\n";
+	cout << "\n---------------------------------------------\n";
+	SetColor(Colors::RED);
+	cout << "\n\tEnemy Army:\n\n";
+	SetColor(Colors::WHITE);
+	Army::Print();
+	cout << "\n---------------------------------------------\n";
 }

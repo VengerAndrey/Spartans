@@ -139,18 +139,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Army.cpp" />
+    <ClCompile Include="Battle.cpp" />
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="EnemyArmy.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="Hoplite.cpp" />
     <ClCompile Include="HopliteArmy.cpp" />
+    <ClCompile Include="Immortal.cpp" />
+    <ClCompile Include="Initialize.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Army.h" />
+    <ClInclude Include="Battle.h" />
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="EnemyArmy.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="Hoplite.h" />
     <ClInclude Include="HopliteArmy.h" />
+    <ClInclude Include="Immortal.h" />
+    <ClInclude Include="Initialize.h" />
     <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

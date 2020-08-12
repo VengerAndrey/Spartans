@@ -1,19 +1,35 @@
 #include "Dragon.h"
 
-void Dragon::Attack(Group group) 
+void Dragon::Attack(Unit** units, int size)
 {
-	for (int i = 0; i < group.GetSize()/5; i++)
+	int damageRadius = 1;
+	int randomUnit = rand() % size;
+	for (int i = randomUnit - damageRadius; i <= randomUnit + damageRadius; i++)
 	{
-		group.GetUnits()[i].SetHp(group.GetUnits()[i].GetHp() - GetDmg());
+		if (i >= 0 && i < size)
+		{
+			(*units[i]).SetHp((*units[i]).GetHp() - GetDmg());
+		}
 	}
-}
-
-Unit* Dragon::GetUnit()
-{
-	return this;
 }
 
 void Dragon::Print()
 {
 	cout << "Dragon: " << "HP = [" << GetHp() << "] DMG = [" << GetDmg() << "]\n";
+}
+
+void Dragon::LogMyself(string& log)
+{
+	if (GetHp() <= 0)
+	{
+		log.append("Dragon has died.\n");
+	}
+	else if (GetHpChange() < 0)
+	{
+		log.append("Dragon received ").append(to_string(-GetHpChange())).append(" damage.\n");
+	}
+	else if (GetHpChange() > 0)
+	{
+		log.append("Dragon was healed by ").append(to_string(GetHpChange())).append(" health points.\n");
+	}
 }

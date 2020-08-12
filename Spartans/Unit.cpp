@@ -4,6 +4,7 @@ Unit::Unit(int hp, int dmg)
 {
 	this->hp = hp;
 	this->dmg = dmg;
+	hpChange = 0;
 }
 
 int Unit::GetHp()
@@ -13,6 +14,7 @@ int Unit::GetHp()
 
 void Unit::SetHp(int hp)
 {
+	hpChange += hp - this->hp;
 	this->hp = hp;
 }
 
@@ -31,50 +33,15 @@ bool Unit::IsAlive()
 	return (hp > 0) ? true : false;
 }
 
-void Group::Update()
+int Unit::GetHpChange()
 {
-	int i = 0;
-	while (true)
-	{
-		if (i == size)
-		{
-			break;
-		}
-		if (!(units[i].IsAlive()))
-		{
-			Unit* newUnits = new Unit[size - 1];
-			for (int j = 0; j < size; j++)
-			{
-				if (j < i)
-				{
-					newUnits[j] = units[j];
-				}
-				else if (j > i)
-				{
-					newUnits[j - 1] = units[j];
-				}
-			}
-			size--;
-			units = newUnits;
-		}
-		else
-		{
-			i++;
-		}
-	}
+	return hpChange;
 }
 
-Group Group::GetGroup()
+void Unit::ClearHpChange()
 {
-	return *this;
+	hpChange = 0;
 }
 
-int Group::GetSize()
-{
-	return size;
-}
 
-Unit* Group::GetUnits()
-{
-	return units;
-}
+

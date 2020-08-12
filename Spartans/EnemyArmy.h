@@ -1,13 +1,16 @@
 #pragma once
 #include <iostream>
-#include "Unit.h"
+
+#include "Army.h"
 #include "Dragon.h"
+#include "Immortal.h"
+
 using namespace std;
 
-class EnemyArmy : public Group
+class EnemyArmy : public Army
 {
 public:
-	EnemyArmy(int size = 1);
+	EnemyArmy(Dragon dragon, Immortal immortal, int size = 1);
 	void Attack(Group group);
 	void Print();
 };

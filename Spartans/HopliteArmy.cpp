@@ -1,32 +1,32 @@
 #include "HopliteArmy.h"
 
-HopliteArmy::HopliteArmy(Hoplite hoplite, int size)
+HopliteArmy::HopliteArmy(Hoplite hoplite, int size) : Army(size)
 {
-	units = new Hoplite[size];
+	//units = new Unit*[size];
 	for (int i = 0; i < size; i++)
 	{
-		units[i] = hoplite;
+		units[i] = new Hoplite(hoplite);
 	}
-	this->size = size;
+	//this->size = size;
 }
 
 void HopliteArmy::Attack(Group group)
 {
-	for (int i = 0; i < size; i++)
-	{
-		units[i].Attack(group);
-	}
-	/*int totalDmg = units[0].GetDmg() * size;
-	group.GetUnits()[group.GetSize()/2].SetHp(group.GetUnits()[group.GetSize() / 2].GetHp() - totalDmg);*/
+	cout << "\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";
+	SetColor(Colors::GREEN);
+	cout << "\nHoplite army is attacking...\n";
+	SetColor(Colors::WHITE);
+	cout << "\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n";
+
+	Army::Attack(group);
 }
 
 void HopliteArmy::Print()
 {
-	cout << "----------------------------------\n";
-	cout << "Our Army:\n";
-	for (int i = 0; i < size; i++)
-	{
-		units[i].Print();
-	}
-	cout << "----------------------------------\n";
+	cout << "\n---------------------------------------------\n";
+	SetColor(Colors::GREEN);
+	cout << "\n\tHoplite Army:\n\n";
+	SetColor(Colors::WHITE);
+	Army::Print();
+	cout << "\n---------------------------------------------\n";
 }
